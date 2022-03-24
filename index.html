@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lab - 3</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        #container{
+            font-size: 20px;
+            text-align: center;
+            width: 50vw;
+            display: block;
+            margin: auto;
+            background-color: aquamarine;
+            height: 40vh;
+        }
+        table{
+            font-size: 20px;
+            width: 50vw;
+            text-align: center;
+            padding-top: 10vh;
+        }
+
+        #operations{
+            margin-top: 40px;
+            display: flex;
+            margin-left: auto;
+        }
+
+        #operations div{
+            border: 2px solid black;
+            padding: 10px
+        }
+
+        #operations div:nth-child(1){
+            margin-left: auto;
+        }
+        #operations div:nth-child(5){
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        function solve(e){
+            var n1 = document.getElementById('fn').value;
+            var n2 = document.getElementById('sn').value;
+            if(n1[0] === '.'){
+                document.getElementById("result").value="First Number can't start with '.'";
+                return;
+                
+            }
+            else if(n1[n1.length-1]==='.'){
+                document.getElementById("result").value="First Number can't end with '.'";
+                return;
+            }
+            else if(isNaN(n1)){
+                document.getElementById("result").value="First Number is not a number";
+                return;
+            }
+            else if(n2[0] === '.'){
+                document.getElementById("result").value="Second Number can't start with '.'";
+                return;
+            }
+            else if(n2[n2.length-1] ==='.'){
+                document.getElementById("result").value="Second Number can't end with '.'";
+                return;
+            }
+            else if(isNaN(n2)){
+                document.getElementById("result").value="Second Number is not a number";
+                return;
+            }
+            if(e == '/' || e=='%'){
+                if(n2==0){
+                    document.getElementById("result").value="Can't Divide by 0";
+                    return;
+                }
+            }
+            var n3 = eval(n1+e+n2);
+            document.getElementById('result').value=n3;
+        }
+    </script>
+</head>
+<body>
+    <!-- 225. -->
+    <h1 style="margin-bottom: 150px;">Calculator</h1>
+    <div id="container">
+        <table>
+            <tr>
+                <th>First Number: </th>
+                <td><input id="fn" type="text" maxlength="25" size="30"></td>
+            </tr>
+            <tr>
+                <th>Second Number: </th>
+                <td><input id="sn" type="text" maxlength="25"size="30"></td>
+            </tr>
+            <tr>
+                <th>Result: </th>
+                <td><input id="result" type="text" maxlength="25" size="30" readonly="true"></td>
+            </tr>
+        </table>
+        <div id="operations">
+            <div onclick="solve('+')">+</div>
+            <div onclick="solve('-')">-</div>
+            <div onclick="solve('*')">*</div>
+            <div onclick="solve('/')">/</div>
+            <div onclick="solve('%')">%</div>
+        </div>
+    </div>
+</body>
+</html>
